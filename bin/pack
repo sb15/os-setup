@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]
+then
+  echo " ${0##*/} <file/dir> - archive and compress files and dirs"
+  exit 65
+fi
+
+7z a -tzip "$1".zip "$1"
