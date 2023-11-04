@@ -1,9 +1,20 @@
 #!/bin/bash
 
 osascript &>/dev/null <<EOF
-      tell application "iTerm"
+    if application "iTerm" is not running then
+        tell application "iTerm"
+            launch
+            activate
+            delay 0.5
+        end tell
+    end if
+
+    tell application "iTerm"
+        launch
+        reopen
         activate
+
         tell current window to set tb to create tab with default profile
         tell current session of current window to write text "ssh $1"
-      end tell
+    end tell
 EOF
